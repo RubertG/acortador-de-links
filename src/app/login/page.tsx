@@ -10,7 +10,7 @@ export default function LoginPage () {
       >
         <BackButton className='absolute top-3 left-3 md:top-5 md:left-5' />
         <form
-          className='bg-secondary pb-7 pt-5 px-3 border border-Terziary rounded-lg min-w-80'
+          className='bg-secondary/50 shadow-table shadow-Terziary/50 pb-7 pt-5 px-3 border border-Terziary rounded-lg min-w-80'
         >
           <h1 className='text-2xl font-medium mb-4 text-center'>
             Ingresar
