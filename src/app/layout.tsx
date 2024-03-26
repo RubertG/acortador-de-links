@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { poppins } from '@/fonts/fonts'
 
 export const metadata: Metadata = {
   title: 'Links cortos - Rubert Gonzalez',
@@ -16,7 +14,9 @@ export default function RootLayout ({
 }>) {
   return (
     <html lang="es">
-      <body className={inter.className}>{children}</body>
+      <body className={`${poppins.className} bg-primary text-white`}>
+        {children}
+      </body>
     </html>
   )
 }

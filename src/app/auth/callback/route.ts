@@ -30,6 +30,5 @@ export async function GET (request: Request) {
     await supabase.auth.exchangeCodeForSession(code)
   }
 
-  // return the user to an error page with instructions
   return NextResponse.redirect(origin)
 }

@@ -1,9 +1,38 @@
+import { Footer } from '@/components/footer'
+import { LinksContainer } from '@/components/links-container'
+import { Nav } from '@/components/nav'
 import Link from 'next/link'
 
 export default function Home () {
   return (
-    <main>
-      <Link href='/login'>Login</Link>
-    </main>
+    <>
+      <Nav />
+      <header
+        className='my-3 md:my-10 px-2 xl:px-0'
+      >
+        <h1
+          className='gradient-text px-3 text-5xl md:text-6xl lg:text-7xl font-bold text-center m-auto'
+        >Acortador de enlaces</h1>
+        <p
+          className='text-gray-300 text-center px-3 md:px-0 mt-4 max-w-3xl m-auto text-xs  md:text-sm'
+        >
+          Abrevia y personaliza tu URL de manera totalmente gratuita. Podrás realizar un seguimiento de todos los clics que se hagan en tu enlace y ver la fecha en que se llevaron a cabo. Además, tienes la opción de utilizar enlaces abreviados de otros usuarios para mayor comodidad.
+        </p>
+        <footer
+        className='flex items-center justify-center mt-4'
+        >
+          <Link
+            href='/dashboard'
+            className='bg-purple-900 px-4 py-2 rounded-lg text-sm hover:bg-purple-950 transition-colors font-medium'
+          >
+            Crear URL personalizada
+          </Link>
+        </footer>
+      </header>
+      <main className='my-3 md:my-14 mt-10'>
+        <LinksContainer />
+      </main>
+      <Footer />
+    </>
   )
 }
