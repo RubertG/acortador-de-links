@@ -29,7 +29,7 @@ export const LinkTable = ({ links: initialLinks }: Props) => {
             </thead>
             <tbody>
               {
-                stateLinks.links?.length === 0
+                stateLinks.filterLinks?.length === 0
                   ? (
                     <tr className="text-md font-medium tracking-wide text-left text-gray-300 border-Terziary">
                       <td className="px-3 py-2 md:px-4 md:py-3 text-center text-sm " colSpan={4}>No hay links :(</td>
