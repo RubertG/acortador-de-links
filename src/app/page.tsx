@@ -23,7 +23,7 @@ export default function Home () {
         >
           <Link
             href='/dashboard'
-            className='bg-purple-900 px-4 py-2 rounded-lg text-sm hover:bg-purple-950 transition-colors font-medium'
+            className='bg-purple-800 px-4 py-2 rounded-lg text-sm hover:bg-purple-950 transition-colors font-medium'
           >
             Crear URL personalizada
           </Link>
