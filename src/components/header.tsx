@@ -9,7 +9,7 @@ export const Header = () => {
           className='gradient-text px-3 text-5xl md:text-6xl lg:text-7xl font-bold text-center m-auto'
         >Acortador de enlaces</h1>
         <p
-          className='text-gray-300 text-balance sm:text-center px-3 md:px-0 mt-4 max-w-3xl m-auto text-sm'
+          className='text-gray-300 sm:text-center px-2 md:px-0 mt-4 max-w-3xl m-auto text-sm'
         >
           Abrevia y personaliza tu URL de manera totalmente gratuita. Podrás realizar un seguimiento de todos los clics que se hagan en tu enlace y ver la fecha en que se llevaron a cabo. Además, tienes la opción de utilizar enlaces abreviados de otros usuarios para mayor comodidad.
         </p>

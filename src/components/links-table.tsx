@@ -11,7 +11,16 @@ interface Props {
 }
 
 export const LinkTable = ({ links: initialLinks }: Props) => {
-  const [stateLinks, setStateLinks] = useState<TypeStateLinks>(initialLinks ? { links: initialLinks, filterLinks: initialLinks } : { filterLinks: [], links: [] })
+  const [stateLinks, setStateLinks] = useState<TypeStateLinks>(
+    initialLinks
+      ? {
+          links: initialLinks,
+          filterLinks: initialLinks
+        }
+      : {
+          filterLinks: [],
+          links: []
+        })
 
   return (
     <section className="container mx-auto max-w-5xl px-3 xl:p-0">

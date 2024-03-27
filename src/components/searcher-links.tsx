@@ -16,7 +16,9 @@ export const SearcherLinks: FC<Props> = ({ setStateLinks, stateLinks }) => {
     const search = e.target.value
     const newStateLinks: TypeStateLinks = {
       ...stateLinks,
-      filterLinks: stateLinks.links.filter(link => link.url.includes(search))
+      filterLinks: stateLinks.links.filter(
+        link => link.url.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      )
     }
     setStateLinks(newStateLinks)
     setLoading(false)
@@ -35,7 +37,7 @@ export const SearcherLinks: FC<Props> = ({ setStateLinks, stateLinks }) => {
           debouceSearch(e)
         }}
       />
-      <LoadingIcon className={`w-10 transition-opacity ${loading ? 'opacity-100' : 'opacity-0'}`} />
+      <LoadingIcon className='w-10' loading={loading} />
     </search>
   )
 }

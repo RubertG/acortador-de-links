@@ -19,7 +19,7 @@ const config: Config = {
       colors: {
         primary: '#08020c',
         secondary: '#0e0416',
-        Terziary: '#1c072c'
+        Terziary: '#220836'
       }
     }
   },
