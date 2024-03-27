@@ -1,18 +1,16 @@
 'use client'
 
 import { GithubIcon } from '@/components/icons'
-import { getURL } from '@/utils/getURL'
 import { useSupabaseClient } from '@/utils/supabase/client'
 
 export function AuthButton () {
   const supabase = useSupabaseClient()
 
   const handleSignIn = async () => {
-    console.log(getURL())
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: `${getURL()}/auth/callback`
+        redirectTo: `${location.origin}/auth/callback`
       }
     })
   }
