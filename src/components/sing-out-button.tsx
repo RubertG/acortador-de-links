@@ -1,11 +1,11 @@
 'use client'
 
-import { createClient } from '@/utils/supabase/client'
+import { useSupabaseClient } from '@/utils/supabase/client'
 import { useRouter } from 'next/navigation'
 
 export const SingOutButton = () => {
   const router = useRouter()
-  const supabase = createClient()
+  const supabase = useSupabaseClient()
 
   const handleSingOut = async () => {
     await supabase.auth.signOut()
