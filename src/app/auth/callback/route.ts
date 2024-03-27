@@ -5,7 +5,7 @@ import { createServerClient, type CookieOptions } from '@supabase/ssr'
 export const dynamic = 'force-dynamic'
 
 export async function GET (request: Request) {
-  const { searchParams } = new URL(request.url)
+  const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
 
   if (code) {
@@ -30,5 +30,5 @@ export async function GET (request: Request) {
     await supabase.auth.exchangeCodeForSession(code)
   }
 
-  return NextResponse.redirect('https://rdeli.vercel.app')
+  return NextResponse.redirect(origin)
 }

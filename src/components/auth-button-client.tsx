@@ -10,7 +10,7 @@ export function AuthButton () {
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: 'https://rdeli.vercel.app/auth/callback'
+        redirectTo: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/callback`
       }
     })
   }
