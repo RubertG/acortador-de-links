@@ -7,6 +7,7 @@ export function AuthButton () {
   const supabase = createClient()
 
   const handleSignIn = async () => {
+    console.log(`${process.env.NEXT_PUBLIC_DOMAIN}/auth/callback`)
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
