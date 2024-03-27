@@ -30,5 +30,5 @@ export async function GET (request: Request) {
     await supabase.auth.exchangeCodeForSession(code)
   }
 
-  return NextResponse.redirect(`${process.env.NEXT_PUBLIC_DOMAIN}/`)
+  return NextResponse.redirect('https://rdeli.vercel.app')
 }
