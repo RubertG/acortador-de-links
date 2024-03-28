@@ -28,7 +28,7 @@ export const FormCreateLink = () => {
           className='flex items-center justify-between w-full py-3 md:py-4 px-3'
         >
           <p
-            className='text-ellipsis whitespace-nowrap overflow-hidden text-sm md:text-base text-gray-400'
+            className='text-ellipsis whitespace-nowrap overflow-hidden text-sm text-gray-400'
           >
             {process.env.NEXT_PUBLIC_SITE_URL}
             <span className='text-white'>{name}</span>

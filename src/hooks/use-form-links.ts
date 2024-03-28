@@ -21,8 +21,9 @@ export const useFormLinks = () => {
       formRef.current.reset()
       if (!firstRender) {
         toast.success('Enlace creado correctamente', {
-          className: 'bg-Terziary border-purple-950 flex items-center text-base text-gray-200',
           style: {
+            background: '#220836',
+            borderColor: '#0d0515',
             fontFamily: 'inherit'
           }
         })
@@ -37,8 +38,9 @@ export const useFormLinks = () => {
 
   const handleClickCopy = async () => {
     toast.success('Enlace copiado', {
-      className: 'bg-Terziary border-purple-950 flex items-center text-base text-gray-200',
       style: {
+        background: '#220836',
+        borderColor: '#0d0515',
         fontFamily: 'inherit'
       }
     })
