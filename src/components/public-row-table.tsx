@@ -1,7 +1,7 @@
-import { type TypeLink } from '@/types/database.types'
+import { type TypeLinkWithUser } from '@/types/database.types'
 import Link from 'next/link'
 
-export const LinkRowTable = ({ link }: { link: TypeLink }) => {
+export const PublicRowTable = ({ link }: { link: TypeLinkWithUser }) => {
   return (
     <tr className="text-gray-300 border-b border-Terziary last:border-b-0" key={link.id}>
       <td className="px-3 py-2 md:px-4 md:py-3 border-r border-Terziary hover:bg-secondary transition-colors">

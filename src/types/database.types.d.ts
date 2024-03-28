@@ -15,6 +15,9 @@ export interface TypeLink {
   short_url: string
   uid_user: string
   url: string
+}
+
+export interface TypeLinkWithUser extends TypeLink {
   user: {
     avatar_url: string
     created_at: string

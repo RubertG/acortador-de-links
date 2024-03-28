@@ -1,7 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
-import { LinkTable } from './links-table'
+import { PublicLinksTable } from './public-links-table'
 
-export const LinksContainer = async () => {
+export const PublicLinksContainer = async () => {
   const supabase = createClient()
   const { data: links } = await supabase.from('links').select('*, user:users(*)')
 
@@ -10,7 +10,7 @@ export const LinksContainer = async () => {
       <h2
         className='gradient-text px-3 text-2xl lg:text-3xl font-bold text-center m-auto mb-5 xl:mb-6'
       >Enlaces públicos</h2>
-      <LinkTable links={links}/>
+      <PublicLinksTable links={links} />
     </section >
   )
 }

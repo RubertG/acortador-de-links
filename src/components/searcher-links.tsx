@@ -3,18 +3,18 @@
 import { useDebounce } from '@react-hooks-hub/use-debounce'
 import { useState, type FC } from 'react'
 import { LoadingIcon } from './icons'
-import { type TypeStateLinks } from '@/types/types'
+import { type TypeStateUserLinks, type TypeStatePublicLinks } from '@/types/types'
 
 interface Props {
-  setStateLinks: (links: TypeStateLinks) => void
-  stateLinks: TypeStateLinks
+  setStateLinks: (links: TypeStatePublicLinks | TypeStateUserLinks) => void
+  stateLinks: TypeStatePublicLinks | TypeStateUserLinks
 }
 
 export const SearcherLinks: FC<Props> = ({ setStateLinks, stateLinks }) => {
   const [loading, setLoading] = useState(false)
   const debouceSearch = useDebounce(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const search = e.target.value
-    const newStateLinks: TypeStateLinks = {
+    const newStateLinks = {
       ...stateLinks,
       filterLinks: stateLinks.links.filter(
         link => link.url.toLocaleLowerCase().includes(search.toLocaleLowerCase())

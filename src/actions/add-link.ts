@@ -3,7 +3,7 @@
 import { createClient } from '@/utils/supabase/server'
 
 export const addLink = async (prevState: any, formData: FormData) => {
-  const name = formData.get('name')?.toString()
+  const name = formData.get('name')?.toString().replace(' ', '-')
   const url = formData.get('url')?.toString()
 
   if (!url || !name) {
@@ -13,6 +13,12 @@ export const addLink = async (prevState: any, formData: FormData) => {
   }
 
   if (!url.startsWith('http')) {
+    return {
+      message: 'URL invalida'
+    }
+  }
+
+  if (url === 'dashboard') {
     return {
       message: 'URL invalida'
     }

@@ -33,7 +33,7 @@ export const useFormLinks = () => {
   }, [state.message])
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
+    setName(e.target.value.replace(' ', '-'))
   }
 
   const handleClickCopy = async () => {
