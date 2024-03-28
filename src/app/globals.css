@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .gradient-text {
-  background: linear-gradient(90deg, rgba(213,159,255,1) 0%, rgba(34,51,255,1) 48%, rgba(213,159,255,1) 100%);
+  background: linear-gradient(90deg, rgba(213, 159, 255, 1) 0%, rgba(34, 51, 255, 1) 48%, rgba(213, 159, 255, 1) 100%);
   width: fit-content;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -11,15 +11,32 @@
   animation: gradient 10s ease-in-out infinite;
 }
 
+.entry-animation {
+  opacity: 0;
+  animation: entry both .2s ease-in-out;
+}
+
 @keyframes gradient {
-  0%{
+  0% {
     background-position: 0 75%;
   }
+
   50% {
     background-position: 100% 50%;
 
   }
+
   100% {
     background-position: 0 75%;
+  }
+}
+
+@keyframes entry {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

@@ -31,7 +31,7 @@ export const SearcherLinks: FC<Props> = ({ setStateLinks, stateLinks }) => {
       <input
         type='text'
         placeholder='Buscar links por la URL...'
-        className='rounded-md text-sm md:text-base py-1 px-3 bg-secondary w-full md:w-[50%] max-w-lg focus:outline-none focus:outline-1 focus:outline-Terziary placeholder:text-gray-400 text-gray-300'
+        className='rounded-md text-sm md:text-base py-2 px-3 bg-secondary w-full md:w-[50%] max-w-lg focus:outline-none focus:outline-1 focus:outline-Terziary placeholder:text-gray-400 text-gray-300'
         onChange={e => {
           setLoading(true)
           debouceSearch(e)
