@@ -48,7 +48,7 @@ export const UserRowTable: FC<Props> = ({ link, handleClick }) => {
       >
         <Link
           className='px-3 py-2 md:px-4 md:py-3 flex items-center justify-center gap-1 text-white font-medium group'
-          href={`/link/${link.id}`}
+          href={`dashboard/link/${link.id}`}
         >
           <p
             className='group-hover:text-purple-400 transition-colors'
