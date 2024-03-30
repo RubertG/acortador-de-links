@@ -19,7 +19,6 @@ export type TypeAction = (prevState: any, formData: FormData) => Promise<{
 
 export const useFormLinks = (
   action: TypeAction = addLink,
-  isReloadLinks = true,
   initialName = ''
 ) => {
   const { reloadLinks } = useUserLinksContext()
@@ -39,7 +38,7 @@ export const useFormLinks = (
       })
       state.send = false
       setName('')
-      if (isReloadLinks) reloadLinks()
+      reloadLinks()
     }
   }, [state?.message, state?.send])
 
@@ -64,6 +63,7 @@ export const useFormLinks = (
     state,
     handleChangeName,
     name,
-    handleClickCopy
+    handleClickCopy,
+    reloadLinks
   }
 }

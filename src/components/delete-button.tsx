@@ -12,6 +12,7 @@ interface Props {
 export const DeleteButton: FC<Props> = ({ handlePopup, isSelectedLinks, className = '' }) => {
   return (
     <button
+      type='button'
       className={`flex items-center justify-center hover:scale-125 transition-all group ${isSelectedLinks ? 'opacity-100 z-0' : 'opacity-0 -z-50'} ${className}`}
       onClick={handlePopup}
     >

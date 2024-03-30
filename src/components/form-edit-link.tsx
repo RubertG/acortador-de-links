@@ -5,7 +5,7 @@ import { ConfirmPopup } from './confirm-popup'
 import { useSupabaseClient } from '@/utils/supabase/client'
 import { type TypeLink } from '@/types/database.types'
 import { toast } from 'sonner'
-import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useFormLinks } from '@/hooks/use-form-links'
 import { CopyIcon } from './icons'
 import { ButtonForm } from './button-form'
@@ -19,10 +19,11 @@ interface Props {
 
 export const FormEditLink: FC<Props> = ({ link }) => {
   const [popup, setPopup] = useState(false)
-  const { formAction, formRef, handleChangeName, handleClickCopy, name, state } = useFormLinks(async (prevState: any, formData: FormData) => {
+  const { formAction, formRef, handleChangeName, handleClickCopy, name, state, reloadLinks } = useFormLinks(async (prevState: any, formData: FormData) => {
     return await editLink(prevState, formData, link.id)
-  }, false, link.name)
+  }, link.name)
   const supabase = useSupabaseClient()
+  const router = useRouter()
 
   const handlePopup = () => {
     setPopup(!popup)
@@ -36,7 +37,8 @@ export const FormEditLink: FC<Props> = ({ link }) => {
       })
       return
     }
-    redirect('/dashboard')
+    reloadLinks()
+    router.push('/dashboard')
   }
 
   return (

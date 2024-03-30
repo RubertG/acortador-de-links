@@ -1,7 +1,6 @@
 import { FormEditLink } from '@/components/form-edit-link'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
-import { toast } from 'sonner'
 
 interface Props {
   params: {
@@ -14,9 +13,6 @@ const LinkPage = async ({ params: { id } }: Props) => {
   const { data: links } = await supabase.from('links').select('*').eq('id', id)
 
   if (!links || links.length === 0) {
-    toast.error('Error al encontrar el enlace', {
-      className: 'text-inherit text-red-500 bg-red-950 border border-red-900'
-    })
     return redirect('/dashboard')
   }
 
