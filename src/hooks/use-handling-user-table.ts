@@ -17,6 +17,7 @@ export const useHandlingUserTable = () => {
   const [isSelectedLinks, setIsSelectedLinks] = useState(false)
   const [isSelectedParent, setIsSelectedParent] = useState(false)
   const [popup, setPopup] = useState(false)
+  const [loadingDelete, setLoadingDelete] = useState(false)
   const searchRef = useRef<HTMLHeadElement>(null)
   const supabase = useSupabaseClient()
 
@@ -95,6 +96,7 @@ export const useHandlingUserTable = () => {
   }
 
   const deleteLinks = async () => {
+    setLoadingDelete(true)
     const newStateLinks: TypeStateUserLinks = {
       filterLinks: [],
       links: []
@@ -122,10 +124,12 @@ export const useHandlingUserTable = () => {
       toast.error('Error al borrar los links', {
         className: 'text-inherit text-red-500 bg-red-950 border border-red-900'
       })
+      setLoadingDelete(false)
       setPopup(false)
       return
     }
 
+    setLoadingDelete(false)
     setIsSelectedParent(false)
     setStateLinks(newStateLinks)
     setPopup(false)
@@ -142,6 +146,7 @@ export const useHandlingUserTable = () => {
     deleteLinks,
     popup,
     isSelectedParent,
-    stateLinks
+    stateLinks,
+    loadingDelete
   }
 }

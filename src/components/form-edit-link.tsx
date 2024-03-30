@@ -1,49 +1,33 @@
 'use client'
 
-import { type FC, useState } from 'react'
+import { type FC } from 'react'
 import { ConfirmPopup } from './confirm-popup'
-import { useSupabaseClient } from '@/utils/supabase/client'
 import { type TypeLink } from '@/types/database.types'
-import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
-import { useFormLinks } from '@/hooks/use-form-links'
 import { CopyIcon } from './icons'
 import { ButtonForm } from './button-form'
 import { ErrorForm } from './error-form'
-import { editLink } from '@/actions/edit-link'
 import { DeleteButton } from './delete-button'
+import { useFormEditLinks } from '@/hooks/use-form-edit-links'
 
 interface Props {
   link: TypeLink
 }
 
 export const FormEditLink: FC<Props> = ({ link }) => {
-  const [popup, setPopup] = useState(false)
-  const { formAction, formRef, handleChangeName, handleClickCopy, name, state, reloadLinks } = useFormLinks(async (prevState: any, formData: FormData) => {
-    return await editLink(prevState, formData, link.id)
-  }, link.name)
-  const supabase = useSupabaseClient()
-  const router = useRouter()
-
-  const handlePopup = () => {
-    setPopup(!popup)
-  }
-
-  const handleDelete = async () => {
-    const { error } = await supabase.from('links').delete().eq('id', link.id)
-    if (error) {
-      toast.error('Error al borrar el enlace', {
-        className: 'text-inherit text-red-500 bg-red-950 border border-red-900'
-      })
-      return
-    }
-    reloadLinks()
-    router.push('/dashboard')
-  }
+  const {
+    formAction, formRef, handleChangeName,
+    handleClickCopy, name, state, loading,
+    handlePopup, handleDelete, popup
+  } = useFormEditLinks({ link })
 
   return (
     <>
-      <ConfirmPopup cancel={handlePopup} deleteLink={handleDelete} isActivated={popup} />
+      <ConfirmPopup
+        cancel={handlePopup}
+        deleteLink={handleDelete}
+        isActivated={popup}
+        loading={loading}
+      />
       <form
         action={formAction}
         ref={formRef}

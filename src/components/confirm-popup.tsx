@@ -1,14 +1,16 @@
 'use client'
 
 import { type FC } from 'react'
+import { LoadingIcon } from './icons'
 
 interface Props {
   cancel: () => void
   deleteLink: () => void
   isActivated: boolean
+  loading: boolean
 }
 
-export const ConfirmPopup: FC<Props> = ({ cancel, isActivated, deleteLink }) => {
+export const ConfirmPopup: FC<Props> = ({ cancel, isActivated, deleteLink, loading }) => {
   return (
     <main
       className={`fixed top-0 left-0 bg-primary/95 h-dvh w-full transition-opacity grid place-content-center ${isActivated ? ' opacity-100 z-50' : '-z-50 opacity-0'}`}
@@ -30,9 +32,18 @@ export const ConfirmPopup: FC<Props> = ({ cancel, isActivated, deleteLink }) => 
             onClick={cancel}
           >Cancelar</button>
           <button
-            className='bg-red-800 px-4 py-2 rounded-lg text-sm hover:bg-red-950 transition-colors font-medium text-white'
+            className='relative bg-red-800 px-4 py-2 rounded-lg text-sm hover:bg-red-950 transition-colors font-medium text-white'
             onClick={deleteLink}
-          >Eliminar</button>
+          >
+            <p
+            className={`transition-opacity ${!loading ? 'opacity-100' : 'opacity-0'}`}
+            >Eliminar</p>
+            <LoadingIcon
+              className='w-10 absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]'
+              loading={loading}
+              color='#FFFF'
+            />
+          </button>
         </footer>
       </section>
     </main>

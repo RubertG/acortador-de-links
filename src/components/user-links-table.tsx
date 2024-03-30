@@ -14,7 +14,7 @@ const theads = ['URL', 'URL abreviada', 'Estadísticas']
 export const UserLinksTable = () => {
   const {
     callbackSearcher, deleteLinks, handleClick,
-    handlePopup, isSelectedLinks, loading,
+    handlePopup, isSelectedLinks, loading, loadingDelete,
     searchRef, popup, isSelectedParent, stateLinks
   } = useHandlingUserTable()
 
@@ -23,7 +23,9 @@ export const UserLinksTable = () => {
       <ConfirmPopup
         cancel={handlePopup}
         deleteLink={deleteLinks}
-        isActivated={popup} />
+        isActivated={popup}
+        loading={loadingDelete}
+      />
       <div className="w-full mb-8 overflow-hidden rounded-lg shadow-table shadow-Terziary/50 border border-Terziary">
         <div className="w-full overflow-x-auto">
           <header

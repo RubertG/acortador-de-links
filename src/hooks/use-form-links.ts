@@ -19,7 +19,8 @@ export type TypeAction = (prevState: any, formData: FormData) => Promise<{
 
 export const useFormLinks = (
   action: TypeAction = addLink,
-  initialName = ''
+  initialName = '',
+  resetForm = true
 ) => {
   const { reloadLinks } = useUserLinksContext()
   const formRef = useRef<HTMLFormElement>(null)
@@ -28,16 +29,18 @@ export const useFormLinks = (
 
   useEffect(() => {
     if (state?.message === '' && formRef.current && state?.send) {
-      formRef.current.reset()
-      toast.success('Enlace creado correctamente', {
+      toast.success(`Enlace ${resetForm ? 'creado' : 'actualizado'} correctamente`, {
         style: {
           background: '#220836',
           borderColor: '#0d0515',
           fontFamily: 'inherit'
         }
       })
+      if (resetForm) {
+        formRef.current.reset()
+        setName('')
+      }
       state.send = false
-      setName('')
       reloadLinks()
     }
   }, [state?.message, state?.send])

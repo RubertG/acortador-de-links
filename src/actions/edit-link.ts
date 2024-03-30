@@ -1,7 +1,6 @@
 'use server'
 
 import { createClient } from '@/utils/supabase/server'
-import { revalidatePath } from 'next/cache'
 
 export const editLink = async (prevState: any, formData: FormData, id: string) => {
   const name = formData.get('name')?.toString().replace(' ', '-')
@@ -42,8 +41,6 @@ export const editLink = async (prevState: any, formData: FormData, id: string) =
       send: false
     }
   }
-
-  revalidatePath(`/dashboard/link/${id}`)
 
   return {
     message: '',
