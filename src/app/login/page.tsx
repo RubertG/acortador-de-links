@@ -6,7 +6,7 @@ export default function LoginPage () {
   return (
     <>
       <main
-        className='h-dvh flex items-center justify-center'
+        className='h-[95dvh] flex items-center justify-center'
       >
         <BackButton className='absolute top-3 left-3 md:top-5 md:left-5' />
         <form
@@ -18,7 +18,7 @@ export default function LoginPage () {
           <AuthButton />
         </form>
       </main>
-      <Footer className='absolute bottom-0 left-[50%] translate-x-[-50%]' />
+      <Footer className='absolute bottom-0 w-full lg:left-[50%] lg:translate-x-[-50%]' />
     </>
   )
 }
