@@ -17,6 +17,10 @@ export interface TypeLink {
   url: string
 }
 
+export interface TypeLinkWithCheck extends TypeLink {
+  isCheck: boolean
+}
+
 export interface TypeLinkWithUser extends TypeLink {
   user: {
     avatar_url: string

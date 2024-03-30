@@ -1,4 +1,4 @@
-import { type TypeLink, type TypeLinkWithUser } from './database.types'
+import { type TypeLinkWithCheck, type TypeLinkWithUser } from './database.types'
 
 export interface TypeStatePublicLinks {
   links: TypeLinkWithUser[]
@@ -6,6 +6,12 @@ export interface TypeStatePublicLinks {
 }
 
 export interface TypeStateUserLinks {
-  links: TypeLink[]
-  filterLinks: TypeLink[]
+  links: TypeLinkWithCheck[]
+  filterLinks: TypeLinkWithCheck[]
+}
+
+export interface TypeContextUserLinks {
+  links: TypeLinkWithCheck[]
+  reloadLinks: () => void
+  loading: boolean
 }

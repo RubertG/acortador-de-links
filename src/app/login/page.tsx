@@ -6,7 +6,7 @@ export default function LoginPage () {
   return (
     <>
       <main
-        className='h-svh flex items-center justify-center'
+        className='h-dvh flex items-center justify-center'
       >
         <BackButton className='absolute top-3 left-3 md:top-5 md:left-5' />
         <form

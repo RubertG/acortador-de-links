@@ -8,19 +8,22 @@ export const addLink = async (prevState: any, formData: FormData) => {
 
   if (!url || !name) {
     return {
-      message: 'Rellena los campos'
+      message: 'Rellena los campos',
+      send: false
     }
   }
 
   if (!url.startsWith('http')) {
     return {
-      message: 'URL invalida'
+      message: 'URL invalida',
+      send: false
     }
   }
 
   if (url === 'dashboard') {
     return {
-      message: 'URL invalida'
+      message: 'URL invalida',
+      send: false
     }
   }
 
@@ -29,13 +32,15 @@ export const addLink = async (prevState: any, formData: FormData) => {
 
   if (errorSelect) {
     return {
-      message: 'Error al guardar el enlace'
+      message: 'Error al guardar el enlace',
+      send: false
     }
   }
 
   if (data.length !== 0) {
     return {
-      message: 'El nombre ya existe'
+      message: 'El nombre ya existe',
+      send: false
     }
   }
 
@@ -45,11 +50,13 @@ export const addLink = async (prevState: any, formData: FormData) => {
 
   if (error) {
     return {
-      message: 'Error al guardar el enlace'
+      message: 'Error al guardar el enlace',
+      send: false
     }
   }
 
   return {
-    message: ''
+    message: '',
+    send: true
   }
 }

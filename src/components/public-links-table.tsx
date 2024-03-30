@@ -24,11 +24,26 @@ export const PublicLinksTable = ({ links: initialLinks }: Props) => {
           links: []
         })
 
+  const callbackSearcher = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const search = e.target.value
+    const newStateLinks = {
+      ...stateLinks,
+      filterLinks: stateLinks.links.filter(
+        link => link.url.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+      )
+    }
+    setStateLinks(newStateLinks)
+  }
+
   return (
     <section className="container mx-auto max-w-5xl px-3 xl:p-0">
       <div className="w-full mb-8 overflow-hidden rounded-lg shadow-table shadow-Terziary/50 border border-Terziary">
         <div className="w-full overflow-x-auto">
-          <SearcherLinks setStateLinks={setStateLinks} stateLinks={stateLinks} />
+          <header
+            className='border-b border-Terziary'
+          >
+            <SearcherLinks callback={callbackSearcher} />
+          </header>
           <table className="w-full">
             <thead>
               <tr className="text-md font-medium tracking-wide text-left text-gray-200 bg-secondary border-b border-Terziary">

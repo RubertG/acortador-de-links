@@ -1,10 +1,32 @@
-import { TypeLink } from '@/types/database.types'
+'use client'
+
+import { type TypeLinkWithCheck } from '@/types/database.types'
 import { RedirectIcon } from './icons'
 import Link from 'next/link'
+import { NAME_CHECKBOX } from '@/types/const'
+import { type MouseEvent, type FC } from 'react'
+import { ButtonCheck } from './button-check'
 
-export const UserRowTable = ({ link }: { link: TypeLink }) => {
+interface Props {
+  link: TypeLinkWithCheck
+  handleClick: (e: MouseEvent<HTMLButtonElement, MouseEvent>) => void
+}
+
+export const UserRowTable: FC<Props> = ({ link, handleClick }) => {
   return (
     <tr className="text-gray-300 border-b border-Terziary last:border-b-0 text-sm" key={link.id}>
+      <td className="px-3 py-2 md:px-4 md:py-3 hover:bg-secondary transition-colors border-r border-Terziary text-center">
+        <div
+          className='grid place-content-center '
+        >
+          <ButtonCheck
+            isActive={link.isCheck}
+            onClick={handleClick}
+            id={link.id}
+            name={NAME_CHECKBOX.children}
+          />
+        </div>
+      </td>
       <td className="px-3 py-2 md:px-4 md:py-3 border-r border-Terziary hover:bg-secondary transition-colors">
         <Link
           className='hover:text-purple-400 transition-colors'
@@ -20,9 +42,6 @@ export const UserRowTable = ({ link }: { link: TypeLink }) => {
         >
           {link.short_url}
         </Link>
-      </td>
-      <td className="px-3 py-2 md:px-4 md:py-3 hover:bg-secondary transition-colors border-r border-Terziary">
-        {new Date(link.created_at).toLocaleDateString('es-CO')}
       </td>
       <td
         className='hover:bg-secondary transition-colors'

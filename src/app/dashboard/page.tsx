@@ -2,11 +2,12 @@ import { Footer } from '@/components/footer'
 import { FormCreateLink } from '@/components/form-create-link'
 import { Nav } from '@/components/nav'
 import { UserLinksContainer } from '@/components/user-links-container'
+import { ProviderContextUserLinks } from '@/context/user-links-context'
 import { Toaster } from 'sonner'
 
 const DashboardPage = () => {
   return (
-    <>
+    <ProviderContextUserLinks>
       <Nav />
       <main
         className='my-3 md:my-10 px-2 xl:px-0'
@@ -25,7 +26,7 @@ const DashboardPage = () => {
         theme='dark'
       />
       <Footer />
-    </>
+    </ProviderContextUserLinks>
   )
 }
 

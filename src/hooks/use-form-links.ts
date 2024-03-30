@@ -5,32 +5,34 @@ import { copy } from '@/utils/copy'
 import { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import { toast } from 'sonner'
+import { useUserLinksContext } from './use-user-links-context'
 
 const initialState = {
-  message: ''
+  message: '',
+  send: false
 }
 
 export const useFormLinks = () => {
+  const { reloadLinks } = useUserLinksContext()
   const formRef = useRef<HTMLFormElement>(null)
-  const [firstRender, setFirstRender] = useState(true)
   const [name, setName] = useState('')
   const [state, formAction] = useFormState(addLink, initialState)
 
   useEffect(() => {
-    if (state.message === '' && formRef.current) {
+    if (state.message === '' && formRef.current && state.send) {
       formRef.current.reset()
-      if (!firstRender) {
-        toast.success('Enlace creado correctamente', {
-          style: {
-            background: '#220836',
-            borderColor: '#0d0515',
-            fontFamily: 'inherit'
-          }
-        })
-      }
+      toast.success('Enlace creado correctamente', {
+        style: {
+          background: '#220836',
+          borderColor: '#0d0515',
+          fontFamily: 'inherit'
+        }
+      })
+      state.send = false
+      setName('')
+      reloadLinks()
     }
-    setFirstRender(false)
-  }, [state.message])
+  }, [state.message, state.send])
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value.replace(' ', '-'))
