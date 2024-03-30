@@ -3,10 +3,11 @@
 import { SearcherLinksAdmin } from './searcher-links'
 import { UserRowTable } from './user-row-table'
 import { NAME_CHECKBOX } from '@/types/const'
-import { LoadingIcon, TrashIcon } from './icons'
+import { LoadingIcon } from './icons'
 import { ConfirmPopup } from './confirm-popup'
 import { ButtonCheck } from './button-check'
 import { useHandlingUserTable } from '@/hooks/use-handling-user-table'
+import { DeleteButton } from './delete-button'
 
 const theads = ['URL', 'URL abreviada', 'Estadísticas']
 
@@ -30,12 +31,11 @@ export const UserLinksTable = () => {
             className='flex items-center justify-between border-b border-Terziary'
           >
             <SearcherLinksAdmin callback={callbackSearcher} />
-            <button
-              className={`flex items-center justify-center mr-3 md:mr-4 hover:scale-125 transition-all group ${isSelectedLinks ? 'opacity-100 z-0' : 'opacity-0 -z-50'}`}
-              onClick={handlePopup}
-            >
-              <TrashIcon className='w-6 h-6 stroke-gray-300 transition-colors group-hover:stroke-red-700' />
-            </button>
+            <DeleteButton
+              handlePopup={handlePopup}
+              isSelectedLinks={isSelectedLinks}
+              className='mr-3 md:mr-4'
+            />
           </header>
           <table className="w-full">
             <thead>

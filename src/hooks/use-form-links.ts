@@ -12,14 +12,23 @@ const initialState = {
   send: false
 }
 
-export const useFormLinks = () => {
+export type TypeAction = (prevState: any, formData: FormData) => Promise<{
+  message: string
+  send: boolean
+}>
+
+export const useFormLinks = (
+  action: TypeAction = addLink,
+  isReloadLinks = true,
+  initialName = ''
+) => {
   const { reloadLinks } = useUserLinksContext()
   const formRef = useRef<HTMLFormElement>(null)
-  const [name, setName] = useState('')
-  const [state, formAction] = useFormState(addLink, initialState)
+  const [name, setName] = useState(initialName)
+  const [state, formAction] = useFormState(action, initialState)
 
   useEffect(() => {
-    if (state.message === '' && formRef.current && state.send) {
+    if (state?.message === '' && formRef.current && state?.send) {
       formRef.current.reset()
       toast.success('Enlace creado correctamente', {
         style: {
@@ -30,9 +39,9 @@ export const useFormLinks = () => {
       })
       state.send = false
       setName('')
-      reloadLinks()
+      if (isReloadLinks) reloadLinks()
     }
-  }, [state.message, state.send])
+  }, [state?.message, state?.send])
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value.replace(' ', '-'))

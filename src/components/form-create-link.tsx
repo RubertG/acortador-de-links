@@ -52,7 +52,7 @@ export const FormCreateLink = () => {
       {
         state.message !== '' && <ErrorForm message={state.message} />
       }
-      <ButtonForm />
+      <ButtonForm className='mt-2'/>
     </form>
   )
 }

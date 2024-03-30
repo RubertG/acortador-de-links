@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { poppins } from '@/fonts/fonts'
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
   title: 'Acortador de enlaces - Rubert Gonzalez',
@@ -16,6 +17,13 @@ export default function RootLayout ({
     <html lang="es">
       <body className={`${poppins.className} bg-primary text-white`}>
         {children}
+        <Toaster
+          position='bottom-right'
+          toastOptions={{
+            duration: 2000
+          }}
+          theme='dark'
+        />
       </body>
     </html>
   )
