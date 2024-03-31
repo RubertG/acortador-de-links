@@ -1,4 +1,6 @@
+import { ClickGraphContainer } from '@/components/click-graph-container'
 import { FormEditLink } from '@/components/form-edit-link'
+import { VisitLinksTable } from '@/components/visit-links-table'
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 
@@ -20,12 +22,16 @@ const LinkPage = async ({ params: { id } }: Props) => {
 
   return (
     <main
-      className='my-3 md:my-10 px-2 xl:px-0'
+      className='my-4 md:my-6 px-2 xl:px-0'
     >
       < h1
         className='gradient-text px-3 text-2xl sm:text-4xl lg:text-5xl font-bold text-center m-auto mb-5 md:mb-8'
       > Editar enlace personalizado</h1 >
       <FormEditLink link={link} />
+      <section>
+        <ClickGraphContainer idLink={link.id} />
+        <VisitLinksTable link={link} />
+      </section>
     </ main>
   )
 }

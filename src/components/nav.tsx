@@ -23,19 +23,15 @@ export const Nav = async () => {
           user
             ? (
               <ul
-                className='flex items-center justify-center gap-4'
+                className='flex items-center justify-center gap-3'
               >
-                <li
-                className='relative group'
-                >
-                  <img
-                    src={user.user_metadata.avatar_url}
-                    alt={user.user_metadata.user_name}
-                    className='aspect-square w-8 rounded-full'
-                  />
-                  <p
-                    className='absolute left-[50%] translate-x-[-50%] translate-y-3 bg-[#260c3a23] border border-[#260c3a] px-3 py-1 text-sm rounded-lg text-purple-100 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 transition'
-                  >{user.user_metadata.user_name}</p>
+                <li>
+                  <Link
+                    href='/dashboard'
+                    className='bg-purple-800 px-4 py-2 rounded-lg text-sm hover:bg-purple-950 transition-colors font-medium'
+                  >
+                    Panel
+                  </Link>
                 </li>
                 <li><SingOutButton /></li>
               </ul>

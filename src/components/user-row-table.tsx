@@ -30,7 +30,7 @@ export const UserRowTable: FC<Props> = ({ link, handleClick }) => {
       <td className="px-3 py-2 md:px-4 md:py-3 border-r border-Terziary hover:bg-secondary transition-colors">
         <Link
           className='hover:text-purple-400 transition-colors'
-          href={link.short_url}
+          href={link.url}
         >
           {link.url}
         </Link>

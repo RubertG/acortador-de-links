@@ -15,3 +15,8 @@ export interface TypeContextUserLinks {
   reloadLinks: () => void
   loading: boolean
 }
+
+export interface TypeChartData {
+  name: string
+  clicks: number
+}
