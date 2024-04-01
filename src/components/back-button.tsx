@@ -6,13 +6,14 @@ import { useRouter } from 'next/navigation'
 
 interface Props {
   className?: string
+  href?: string
 }
 
-export const BackButton: FC<Props> = ({ className = '' }) => {
+export const BackButton: FC<Props> = ({ className = '', href = '/' }) => {
   const router = useRouter()
 
   const handleClick = () => {
-    router.back()
+    router.push(href)
   }
 
   return (
@@ -20,7 +21,7 @@ export const BackButton: FC<Props> = ({ className = '' }) => {
       className={`${className} flex items-center justify-center text-purple-100 hover:text-purple-500 group gap-1 transition-colors`}
       onClick={handleClick}
     >
-      <BackIcon className='fill-purple-100 w-5 h-5 group-hover:fill-purple-500 transition'/>
+      <BackIcon className='fill-purple-100 w-5 h-5 group-hover:fill-purple-500 transition' />
       Atrás
     </button>
   )
