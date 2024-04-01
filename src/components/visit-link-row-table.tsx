@@ -18,7 +18,15 @@ export const VisitLinkRowTable: FC<Props> = ({ link, visit }) => {
           {link.short_url}
         </Link>
       </td>
-      <td className="px-3 py-2 md:px-4 md:py-3 border-r border-Terziary hover:bg-secondary transition-colors whitespace-nowrap">
+      <td className="px-3 py-2 md:px-4 md:py-3 hover:bg-secondary transition-colors border-r border-Terziary">
+        <Link
+          className='hover:text-purple-400 transition-colors'
+          href={link.url}
+        >
+          {link.url}
+        </Link>
+      </td>
+      <td className="px-3 py-2 md:px-4 md:py-3 hover:bg-secondary transition-colors whitespace-nowrap">
         {new Date(visit.created_at).toLocaleDateString('es-CO', {
           minute: '2-digit',
           hour: '2-digit',

@@ -8,7 +8,7 @@ interface Props {
   link: TypeLink
 }
 
-const theads = ['URL corta', 'Fecha de visita']
+const theads = ['URL abreviada', 'URL', 'Fecha de visita']
 
 export const VisitLinksTable: FC<Props> = async ({ link }) => {
   const supabase = createClient()
