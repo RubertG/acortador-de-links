@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useFormState } from 'react-dom'
 import { toast } from 'sonner'
 import { useUserLinksContext } from './use-user-links-context'
+import { useRouter } from 'next/navigation'
 
 const initialState = {
   message: '',
@@ -26,6 +27,7 @@ export const useFormLinks = (
   const formRef = useRef<HTMLFormElement>(null)
   const [name, setName] = useState(initialName)
   const [state, formAction] = useFormState(action, initialState)
+  const router = useRouter()
 
   useEffect(() => {
     if (state?.message === '' && formRef.current && state?.send) {
@@ -39,6 +41,8 @@ export const useFormLinks = (
       if (resetForm) {
         formRef.current.reset()
         setName('')
+      } else {
+        router.refresh()
       }
       state.send = false
       reloadLinks()
