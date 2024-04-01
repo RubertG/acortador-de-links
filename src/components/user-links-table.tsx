@@ -27,18 +27,18 @@ export const UserLinksTable = () => {
         loading={loadingDelete}
       />
       <div className="w-full mb-8 overflow-hidden rounded-lg shadow-table shadow-Terziary/50 border border-Terziary">
+        <header
+          ref={searchRef}
+          className='flex items-center justify-between border-b border-Terziary'
+        >
+          <SearcherLinksAdmin callback={callbackSearcher} />
+          <DeleteButton
+            handlePopup={handlePopup}
+            isSelectedLinks={isSelectedLinks}
+            className='mr-3 md:mr-4'
+          />
+        </header>
         <div className="w-full overflow-x-auto">
-          <header
-            ref={searchRef}
-            className='flex items-center justify-between border-b border-Terziary'
-          >
-            <SearcherLinksAdmin callback={callbackSearcher} />
-            <DeleteButton
-              handlePopup={handlePopup}
-              isSelectedLinks={isSelectedLinks}
-              className='mr-3 md:mr-4'
-            />
-          </header>
           <table className="w-full">
             <thead>
               <tr className="text-md font-medium tracking-wide text-left text-gray-200 bg-secondary border-b border-Terziary">
@@ -46,7 +46,7 @@ export const UserLinksTable = () => {
                   className="border-r border-Terziary last:border-r-0 h-full"
                 >
                   <div
-                    className='grid place-content-center '
+                    className='grid place-content-center'
                   >
                     <ButtonCheck
                       id={NAME_CHECKBOX.parent}

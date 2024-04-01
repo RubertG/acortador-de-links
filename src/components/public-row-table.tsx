@@ -19,7 +19,7 @@ export const PublicRowTable = ({ link }: { link: TypeLinkWithUser }) => {
           </div>
         </div>
       </td>
-      <td className="px-3 py-2 md:px-4 md:py-3 text-sm border-r border-Terziary hover:bg-secondary transition-colors">
+      <td className="px-3 py-2 md:px-4 md:py-3 text-sm border-r border-Terziary hover:bg-secondary transition-colors whitespace-nowrap">
         <Link
           className='hover:text-purple-400 transition-colors'
           href={link.short_url}
@@ -27,7 +27,7 @@ export const PublicRowTable = ({ link }: { link: TypeLinkWithUser }) => {
           {link.short_url}
         </Link>
       </td>
-      <td className="px-3 py-2 md:px-4 md:py-3 text-sm border-r border-Terziary hover:bg-secondary transition-colors">
+      <td className="px-3 py-2 md:px-4 md:py-3 text-sm border-r border-Terziary hover:bg-secondary transition-colors whitespace-nowrap">
         <a
           className='hover:text-purple-400 transition-colors'
           href={link.url}

@@ -38,12 +38,12 @@ export const PublicLinksTable = ({ links: initialLinks }: Props) => {
   return (
     <section className="container mx-auto max-w-5xl px-3 xl:p-0">
       <div className="w-full mb-8 overflow-hidden rounded-lg shadow-table shadow-Terziary/50 border border-Terziary">
+        <header
+          className='border-b border-Terziary'
+        >
+          <SearcherLinks callback={callbackSearcher} />
+        </header>
         <div className="w-full overflow-x-auto">
-          <header
-            className='border-b border-Terziary'
-          >
-            <SearcherLinks callback={callbackSearcher} />
-          </header>
           <table className="w-full">
             <thead>
               <tr className="text-md font-medium tracking-wide text-left text-gray-200 bg-secondary border-b border-Terziary">

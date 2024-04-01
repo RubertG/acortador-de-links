@@ -14,10 +14,10 @@ interface Props {
 
 export const UserRowTable: FC<Props> = ({ link, handleClick }) => {
   return (
-    <tr className="text-gray-300 border-b border-Terziary last:border-b-0 text-sm" key={link.id}>
+    <tr className="text-gray-300 border-b border-Terziary last:border-b-0 text-sm">
       <td className="px-3 py-2 md:px-4 md:py-3 hover:bg-secondary transition-colors border-r border-Terziary text-center">
         <div
-          className='grid place-content-center '
+          className='grid place-content-center'
         >
           <ButtonCheck
             isActive={link.isCheck}
@@ -27,7 +27,7 @@ export const UserRowTable: FC<Props> = ({ link, handleClick }) => {
           />
         </div>
       </td>
-      <td className="px-3 py-2 md:px-4 md:py-3 border-r border-Terziary hover:bg-secondary transition-colors">
+      <td className="px-3 py-2 md:px-4 md:py-3 border-r border-Terziary hover:bg-secondary transition-colors whitespace-nowrap">
         <Link
           className='hover:text-purple-400 transition-colors'
           href={link.url}
@@ -35,7 +35,7 @@ export const UserRowTable: FC<Props> = ({ link, handleClick }) => {
           {link.url}
         </Link>
       </td>
-      <td className="px-3 py-2 md:px-4 md:py-3 border-r border-Terziary hover:bg-secondary transition-colors">
+      <td className="px-3 py-2 md:px-4 md:py-3 border-r border-Terziary hover:bg-secondary transition-colors whitespace-nowrap">
         <Link
           className='hover:text-purple-400 transition-colors'
           href={link.short_url}
