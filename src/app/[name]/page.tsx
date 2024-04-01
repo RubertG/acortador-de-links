@@ -10,7 +10,7 @@ interface Props {
 
 const RedirectingPage: FC<Props> = async ({ params: { name } }) => {
   const supabase = createClient()
-  const { data: links, error } = await supabase.from('links').select('*').eq('name', name)
+  const { data: links, error } = await supabase.from('links').select('*').eq('name', decodeURIComponent(name))
 
   if (error != null || links == null || links?.length === 0) {
     return redirect('/')
