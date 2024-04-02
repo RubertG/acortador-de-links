@@ -13,7 +13,11 @@ export const addLink = async (prevState: any, formData: FormData) => {
     }
   }
 
-  if (!url.startsWith('http')) {
+  if (
+    !url.startsWith('http://') ||
+    !url.startsWith('https://') ||
+    !url.startsWith(process.env.NEXT_PUBLIC_SITE_URL!)
+  ) {
     return {
       message: 'URL invalida',
       send: false

@@ -37,7 +37,7 @@ export const ClickGraph: FC<Props> = ({ visitsLinks }) => {
     >
       <div className='w-auto overflow-x-auto md:flex md:items-center md:justify-center'>
         <div
-          className={`-ml-10 py-2 min-h-[${HEIGHT}px]`}
+          className={`-ml-10 py-2 px-3 md:px-0 min-h-[${HEIGHT}px]`}
         >
           <BarChart
             height={HEIGHT}
