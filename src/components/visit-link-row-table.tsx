@@ -13,6 +13,7 @@ export const VisitLinkRowTable: FC<Props> = ({ link, visit }) => {
       <td className="px-3 py-2 md:px-4 md:py-3 hover:bg-secondary transition-colors border-r border-Terziary">
         <Link
           className='hover:text-purple-400 transition-colors'
+          target='_blank'
           href={link.short_url}
         >
           {link.short_url}
@@ -21,6 +22,7 @@ export const VisitLinkRowTable: FC<Props> = ({ link, visit }) => {
       <td className="px-3 py-2 md:px-4 md:py-3 hover:bg-secondary transition-colors border-r border-Terziary">
         <Link
           className='hover:text-purple-400 transition-colors'
+          target='_blank'
           href={link.url}
         >
           {link.url}

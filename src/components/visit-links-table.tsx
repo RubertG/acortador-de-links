@@ -1,8 +1,14 @@
-import { type TypeLink } from '@/types/database.types'
-import { createClient } from '@/utils/supabase/server'
-import { redirect } from 'next/navigation'
-import { type FC } from 'react'
+'use client'
+
+import { type TypeVisitLink, type TypeLink } from '@/types/database.types'
+import { useEffect, useState, type FC } from 'react'
 import { VisitLinkRowTable } from './visit-link-row-table'
+import { PaginationTable } from './pagination-table'
+import { useSupabaseClient } from '@/utils/supabase/client'
+import { type TypeStateVisitsLinks } from '@/types/types'
+import { toast } from 'sonner'
+import { ITEMS_FOR_PAGE_IN_TABLE } from '@/types/const'
+import { LoadingIcon } from './icons'
 
 interface Props {
   link: TypeLink
@@ -10,15 +16,45 @@ interface Props {
 
 const theads = ['URL abreviada', 'URL', 'Fecha de visita']
 
-export const VisitLinksTable: FC<Props> = async ({ link }) => {
-  const supabase = createClient()
-  const { data: visitsLinks, error } = await supabase
-    .from('visits_links')
-    .select('*')
-    .eq('uid_link', link.id)
+export const VisitLinksTable: FC<Props> = ({ link }) => {
+  const supabase = useSupabaseClient()
+  const [state, setState] = useState<TypeStateVisitsLinks>({
+    visitLink: [],
+    filterVisitLink: []
+  })
+  const [loading, setLoading] = useState(true)
 
-  if (error != null || visitsLinks == null) {
-    return redirect('/dashboard')
+  useEffect(() => {
+    const getData = async () => {
+      setLoading(true)
+      const { data: visitsLinks, error } = await supabase
+        .from('visits_links')
+        .select('*')
+        .eq('uid_link', link.id)
+
+      if (error != null || visitsLinks == null) {
+        toast.error('Error al optener la lista de clicks', {
+          className: 'text-inherit text-red-500 bg-red-950 border border-red-900'
+        })
+        setLoading(false)
+        return
+      }
+
+      setState({
+        visitLink: visitsLinks,
+        filterVisitLink: visitsLinks.slice(0, ITEMS_FOR_PAGE_IN_TABLE)
+      })
+      setLoading(false)
+    }
+
+    getData()
+  }, [])
+
+  const setItems = (items: TypeVisitLink[]) => {
+    setState({
+      ...state,
+      filterVisitLink: items
+    })
   }
 
   return (
@@ -37,20 +73,40 @@ export const VisitLinksTable: FC<Props> = async ({ link }) => {
             </thead>
             <tbody>
               {
-                visitsLinks.length === 0
+                (state.filterVisitLink.length === 0 && !loading)
                   ? (
                     <tr className="text-md font-medium tracking-wide text-left text-gray-300 border-Terziary">
                       <td className="px-3 py-2 md:px-4 md:py-3 text-center text-sm " colSpan={4}>No tienes visitas :(</td>
                     </tr>
                     )
                   : (
-                      visitsLinks?.map(visit => (
+                      state.filterVisitLink?.map(visit => (
                       <VisitLinkRowTable visit={visit} link={link} key={visit.id} />
                       ))
-                    )}
+                    )
+              }
+              {
+                (loading && state.filterVisitLink.length === 0) && (
+                  <tr className="text-md font-medium tracking-wide text-left text-gray-300 border-Terziary">
+                    <td
+                      className="px-3 py-6"
+                      colSpan={3}>
+                      <LoadingIcon className='w-20 m-auto' loading={true} />
+                    </td>
+                  </tr>
+                )
+              }
+
             </tbody>
           </table>
         </div>
+        <footer
+          className='overflow-hidden'
+        >
+          {
+            state.visitLink && <PaginationTable items={state.visitLink} setItems={setItems} />
+          }
+        </footer>
       </div>
     </section>
   )

@@ -8,12 +8,13 @@ import { ConfirmPopup } from './confirm-popup'
 import { ButtonCheck } from './button-check'
 import { useHandlingUserTable } from '@/hooks/use-handling-user-table'
 import { DeleteButton } from './delete-button'
+import { PaginationTable } from './pagination-table'
 
 const theads = ['URL', 'URL abreviada', 'Estadísticas']
 
 export const UserLinksTable = () => {
   const {
-    callbackSearcher, deleteLinks, handleClick,
+    callbackSearcher, deleteLinks, handleClick, setItems,
     handlePopup, isSelectedLinks, loading, loadingDelete,
     searchRef, popup, isSelectedParent, stateLinks
   } = useHandlingUserTable()
@@ -94,6 +95,13 @@ export const UserLinksTable = () => {
             </tbody>
           </table>
         </div>
+        <footer
+          className='overflow-hidden'
+        >
+          {
+            (stateLinks.filterLinks.length !== 0 && !loading) && <PaginationTable items={stateLinks.links} setItems={setItems} />
+          }
+        </footer>
       </div>
     </section>
   )

@@ -5,6 +5,8 @@ import { PublicRowTable } from './public-row-table'
 import { SearcherLinks } from './searcher-links'
 import { useState } from 'react'
 import { type TypeStatePublicLinks } from '@/types/types'
+import { PaginationTable } from './pagination-table'
+import { ITEMS_FOR_PAGE_IN_TABLE } from '@/types/const'
 
 interface Props {
   links: TypeLinkWithUser[] | null
@@ -17,7 +19,7 @@ export const PublicLinksTable = ({ links: initialLinks }: Props) => {
     initialLinks
       ? {
           links: initialLinks,
-          filterLinks: initialLinks
+          filterLinks: initialLinks.slice(0, ITEMS_FOR_PAGE_IN_TABLE)
         }
       : {
           filterLinks: [],
@@ -33,6 +35,13 @@ export const PublicLinksTable = ({ links: initialLinks }: Props) => {
       )
     }
     setStateLinks(newStateLinks)
+  }
+
+  const setItems = (items: TypeLinkWithUser[]) => {
+    setStateLinks({
+      ...stateLinks,
+      filterLinks: items
+    })
   }
 
   return (
@@ -70,6 +79,14 @@ export const PublicLinksTable = ({ links: initialLinks }: Props) => {
             </tbody>
           </table>
         </div>
+        <footer
+          className='overflow-hidden'
+        >
+          <PaginationTable
+            items={stateLinks.links}
+            setItems={setItems}
+          />
+        </footer>
       </div>
     </section>
   )

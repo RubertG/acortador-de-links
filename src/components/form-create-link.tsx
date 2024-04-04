@@ -14,9 +14,7 @@ export const FormCreateLink = () => {
       ref={formRef}
       className='border border-Terziary rounded-lg shadow-table shadow-Terziary/50 p-3 md:p-5 max-w-lg m-auto'
     >
-      <label
-        className=''
-      >
+      <label>
         <input
           type='text'
           name='name'

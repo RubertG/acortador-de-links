@@ -136,8 +136,16 @@ export const useHandlingUserTable = () => {
     setIsSelectedLinks(false)
   }
 
+  const setItems = (items: TypeLinkWithCheck[]) => {
+    setStateLinks({
+      ...stateLinks,
+      filterLinks: items
+    })
+  }
+
   return {
     loading,
+    setItems,
     isSelectedLinks,
     searchRef,
     handleClick,

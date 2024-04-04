@@ -17,6 +17,8 @@ export interface TypeLink {
   url: string
 }
 
+export type TypeVisitLink = Database['public']['Tables']['visits_links']['Row']
+
 export interface TypeLinkWithCheck extends TypeLink {
   isCheck: boolean
 }
