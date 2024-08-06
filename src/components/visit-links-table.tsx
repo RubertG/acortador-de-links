@@ -31,6 +31,7 @@ export const VisitLinksTable: FC<Props> = ({ link }) => {
         .from('visits_links')
         .select('*')
         .eq('uid_link', link.id)
+        .order('created_at', { ascending: false })
 
       if (error != null || visitsLinks == null) {
         toast.error('Error al optener la lista de clicks', {

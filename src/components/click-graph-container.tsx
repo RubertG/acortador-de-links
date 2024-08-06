@@ -13,6 +13,7 @@ export const ClickGraphContainer: FC<Props> = async ({ idLink }) => {
     .from('visits_links')
     .select('*')
     .eq('uid_link', idLink)
+    .order('created_at', { ascending: false })
 
   if (error != null || !visitsLinks) {
     return redirect('/dashboard')

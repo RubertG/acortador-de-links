@@ -26,7 +26,7 @@ const LinkPage = async ({ params: { id } }: Props) => {
     >
       < h1
         className='gradient-text px-3 text-2xl sm:text-4xl lg:text-5xl font-bold text-center m-auto mb-5 md:mb-8'
-      > Editar enlace personalizado</h1 >
+      >Editar enlace personalizado</h1>
       <FormEditLink link={link} />
       <section>
         <ClickGraphContainer idLink={link.id} />

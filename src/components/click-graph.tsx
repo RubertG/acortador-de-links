@@ -1,7 +1,7 @@
 import { type Database } from '@/types/database.types'
 import { type FC } from 'react'
 import { BarChart } from 'keep-react'
-import { DAYS_GRAPH_VISIT_LINKS, TIME_GRAPH_VISIT_LINKS } from '@/types/const'
+import { DAYS_GRAPH_VISIT_LINKS } from '@/types/const'
 import { type TypeChartData } from '@/types/types'
 
 const WIDTH = 800
@@ -12,13 +12,19 @@ interface Props {
 }
 
 export const ClickGraph: FC<Props> = ({ visitsLinks }) => {
-  const dateNow = new Date()
-  const initialDate = new Date(dateNow.getTime() - TIME_GRAPH_VISIT_LINKS)
+  const initialDate = new Date()
+  initialDate.setDate(initialDate.getDate() - DAYS_GRAPH_VISIT_LINKS)
   const barChartData: TypeChartData[] = []
 
   for (let i = 0; DAYS_GRAPH_VISIT_LINKS >= i; i++) {
-    const visitDay = visitsLinks.filter(
-      visit => new Date(visit.created_at).getDate() === initialDate.getDate()
+    const visitDay = visitsLinks.filter(visit => {
+      const date = new Date(visit.created_at)
+      const isDay = date.getDate() === initialDate.getDate()
+      const isMonth = date.getMonth() === initialDate.getMonth()
+      const isYear = date.getFullYear() === initialDate.getFullYear()
+
+      return isDay && isMonth && isYear
+    }
     ).length
     barChartData.push({
       name: initialDate.toLocaleDateString('es-CO', {
